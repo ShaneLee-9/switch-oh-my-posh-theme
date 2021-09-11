@@ -1,5 +1,5 @@
 @echo off
 node app
-echo 3秒后自动关闭...
-ping -n 3 127.1>nul
+echo 2后关闭
+ping -n 2 127.1>nul
 exit

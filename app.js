@@ -21,10 +21,12 @@ function setTheme() {
   const psProfilePath = 'Documents/PowerShell/Microsoft.PowerShell_profile.ps1'; // powershell配置文件
   const psProfile = fs.readFileSync(path.join(homeDir, psProfilePath), 'utf-8')
   const themeNameReg = /(Set-PoshPrompt\s-Theme\s)(.*)/ // 主题名匹配规则
-  const curTheme = psProfile.match(themeNameReg)[2]
   const allThemes = getThemes()
-  const nextThemeIndex = allThemes.indexOf(curTheme) + 1 >= allThemes.length ? 0 : allThemes.indexOf(curTheme) + 1
-  const nextTheme = allThemes[nextThemeIndex]
+  // const curTheme = psProfile.match(themeNameReg)[2]
+  // const nextThemeIndex = allThemes.indexOf(curTheme) + 1 >= allThemes.length ? 0 : allThemes.indexOf(curTheme) + 1
+  // const nextTheme = allThemes[nextThemeIndex]
+
+  const nextTheme = allThemes[Math.floor(Math.random() * allThemes.length)]
   const newPSProfile = psProfile.replace(themeNameReg, "$1" + nextTheme) // 替换主题后的profile文件
 
   fs.writeFileSync(path.join(homeDir, psProfilePath), newPSProfile, 'utf-8')
